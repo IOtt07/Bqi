@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acervo de Bioquímica - UFV</title>
+    <style>
+        /* --- 1. Paleta de Cores e Estilo Básico --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff; /* Fundo branco */
+            color: #111111; /* Texto preto */
+        }
+
+        /* --- 2. Menu de Navegação --- */
+        nav {
+            background-color: #191970; /* Azul escuro */
+            padding: 15px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative; /* Necessário para o menu de celular descer corretamente */
+        }
+        nav h1 {
+            color: #ffffff;
+            margin: 0;
+            font-size: 24px;
+        }
+
+        /* Botão Hambúrguer (Escondido no Computador) */
+        .menu-toggle {
+            display: none;
+            color: #87CEFA;
+            font-size: 28px;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Lista de Links (Computador) */
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 20px;
+        }
+        nav ul li a {
+            color: #87CEFA; /* Azul claro */
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover {
+            color: #00CED1; /* Ciano ao passar o mouse */
+        }
+
+        /* --- 3. MÁGICA DA RESPONSIVIDADE (CELULAR) --- */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block; /* Mostra o botão hambúrguer */
+            }
+            nav ul {
+                display: none; /* Esconde o menu lateralizado */
+                flex-direction: column;
+                background-color: #191970;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                text-align: center;
+                padding: 20px 0;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+            }
+            nav ul.active {
+                display: flex; /* Mostra o menu em cascata quando clicado */
+            }
+            nav ul li {
+                margin: 15px 0;
+            }
+        }
+
+        /* --- 4. Área Principal (Banner) --- */
+        .hero {
+            /* Degradê: Ciano > Azul Escuro > Roxo */
+            background: linear-gradient(135deg, #00CED1, #191970, #4B0082);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        .hero h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* --- 5. Seção do Instagram --- */
+        .instagram-section {
+            padding: 50px 20px;
+            text-align: center;
+            background-color: #f9f9fb;
+        }
+        .instagram-section h3 {
+            color: #4B0082; /* Roxo */
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        .cards {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .card {
+            background-color: #ffffff;
+            border: 2px solid #87CEFA;
+            border-radius: 10px;
+            padding: 20px;
+            width: 200px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #6A5ACD; /* Fica roxo ao passar o mouse */
+        }
+        .card a {
+            text-decoration: none;
+            color: #191970;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .card p {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <h1>DNA da Bioquímica</h1>
+        <button class="menu-toggle" id="mobile-menu" aria-label="Abrir menu">☰</button>
+        <ul id="nav-list">
+            <li><a href="#">Início</a></li>
+            <li><a href="#arquivos">Acervo de Arquivos</a></li> 
+        </ul>
+    </nav>
+
+    <section class="hero">
+        <h2>Seu Portal de Estudos</h2>
+        <p>Encontre slides, PDFs e materiais disponibilizados pelos professores para facilitar sua jornada no curso de Bioquímica.</p>
+    </section>
+
+    <section class="instagram-section">
+        <h3>Conheça e acompanhe nossos projetos:</h3>
+        <div class="cards">
+            <div class="card">
+                <a href="https://instagram.com/cabqui.ufv" target="_blank">@cabqui.ufv</a>
+                <p>Centro Acadêmico</p>
+            </div>
+            <div class="card">
+                <a href="https://instagram.com/labqiufv" target="_blank">@labqiufv</a>
+                <p>Laboratório</p>
+            </div>
+            <div class="card">
+                <a href="https://instagram.com/polimerize" target="_blank">@polimerize</a>
+                <p>Projeto Polimerize</p>
+            </div>
+            <div class="card">
+                <a href="https://instagram.com/petbioquimica" target="_blank">@petbioquimica</a>
+                <p>PET Bioquímica</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+
+        // Quando clicar no ícone ☰, ele adiciona ou remove a classe 'active'
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+    </script>
+
+</body>
+</html>
